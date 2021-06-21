@@ -1,0 +1,119 @@
+\usepackage{letltxmacro}
+\usepackage{ifthen}
+
+\newif\ifmy@colalign
+\my@colalignfalse
+
+\DeclareOption{colalign}{
+    \my@colaligntrue
+}
+
+\ProcessOptions\relax
+
+\ifmy@colalign
+    % Align the bottoms of columns
+
+    % Declarations
+    \newcounter{my@column}
+    \newcounter{my@column@loop}
+    \newcounter{my@block}
+    \newdimen\my@columnextraspace
+    \newdimen\my@maxcolheight
+    \newdimen\my@colheight
+    \newdimen\my@blocktopstart
+    \newdimen\my@rounded
+
+    % Store the natural height and number of blocks of the current column in the aux file
+    \gdef\my@storecolheight{
+        \ifnum\value{my@column} > 0 %
+            \expandafter\newdimen\csname my@colheight\alph{my@column}\endcsname
+            \expandafter\setlength\csname my@colheight\alph{my@column}\endcsname{\my@colheight}
+            \immediate\write\@auxout{\noexpand\newlabel{my@colheight\alph{my@column}}{{\the\my@colheight}{}}}
+            \immediate\write\@auxout{\noexpand\newlabel{my@numblocks\alph{my@column}}{{\the\c@my@block}}}
+        \fi
+    }
+
+    \LetLtxMacro{\orig@block}{\block}
+
+    % Replace the \block command with a version that pads each block by \my@columnextraspace
+    \renewcommand{\block}[3][]{%
+        \ifTP@columnEnvironment
+            \my@blocktopstart=0pt\relax
+            \advance\my@blocktopstart-\TP@blocktop
+        \fi
+        \orig@block[{#1}]{#2}{\vspace*{-0.5\my@columnextraspace}#3\vspace*{-0.5\my@columnextraspace}}
+        \ifTP@columnEnvironment
+            % count number of blocks
+            \stepcounter{my@block}
+            % keep track of the height of the current column
+            \advance\my@blocktopstart\TP@blocktop
+            \advance\my@colheight\my@blocktopstart
+            % don't add the padding to the height
+            \advance\my@colheight-\my@columnextraspace
+        \fi
+    }
+
+    % Store the maximum natural height of any column in the aux file
+    \gdef\my@storemaxcolheight{
+        \ifnum\value{my@column} > 0 %
+            \newdimen\my@maxcolheight
+            \newdimen\my@colheight@loop
+            \setcounter{my@column@loop}{0}
+            \loop\ifnum\value{my@column@loop}<\value{my@column}
+                \stepcounter{my@column@loop}
+                \my@colheight@loop\csname my@colheight\alph{my@column@loop}\endcsname
+                \ifnum\my@colheight@loop<\my@maxcolheight
+                    \my@maxcolheight\my@colheight@loop
+                \fi
+            \repeat
+            \immediate\write\@auxout{\noexpand\newlabel{my@maxcolheight}{{\the\my@maxcolheight}{}}}
+        \fi
+    }
+
+    % Read the column height information and calculate how much extra space the current column needs per block
+    \gdef\my@calcextraspace{
+        \@ifundefined{r@my@maxcolheight}{%
+            \my@columnextraspace=0pt\relax
+        }{%
+            \expandafter\my@maxcolheight\ref{my@maxcolheight}
+            \expandafter\my@colheight\ref{my@colheight\alph{my@column}}
+            \setcounter{my@block}{\ref{my@numblocks\alph{my@column}}}
+            \my@columnextraspace\my@maxcolheight
+            \advance\my@columnextraspace-\my@colheight
+            \divide\my@columnextraspace by \value{my@block}
+        }
+    }
+
+    % Replace \column command by a version which stores the height (of the previous column) and calls \my@calcextraspace
+    \gdef\column#1{  % #1: relative width
+        \ifTP@columnEnvironment
+            \my@storecolheight
+            \stepcounter{my@column}
+            \my@calcextraspace
+            \setcounter{my@block}{0}
+            \my@blocktopstart0pt
+            \my@colheight0pt
+            % Now the normal \column command
+            \normalsize
+            \setlength{\TP@blocktop}{\TP@coltop}
+            \setlength{\TP@colcenter}{\TP@colcenter+0.5\colwidth+\TP@colspace}
+            \setlength{\colwidth}{#1\TP@visibletextwidth+#1\TP@colspace-\TP@colspace-\blocklinewidth}
+            \setlength{\TP@colcenter}{\TP@colcenter+0.5\colwidth+\blocklinewidth}
+        \fi
+    }
+
+    % Replace the columns environment with a version which stores the height of the final column and the max column
+    \renewenvironment{columns}{
+        \TP@columnEnvironmenttrue
+        \setlength{\TP@colcenter}{-0.5\TP@visibletextwidth-\TP@colspace-0.5\blocklinewidth}
+        \global\TP@colcenter=\TP@colcenter
+        \global\TP@coltop=\TP@blocktop
+        \global\TP@colbottom=\TP@blocktop
+        \colwidth=0pt
+    }{
+        \my@storecolheight
+        \my@storemaxcolheight
+        \TP@columnEnvironmentfalse
+        \global\TP@blocktop=\TP@colbottom
+    }
+\fi
