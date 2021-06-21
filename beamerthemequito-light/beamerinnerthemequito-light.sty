@@ -1,0 +1,85 @@
+\mode<presentation>
+
+%
+% FONTS
+%
+% Title page
+\setbeamerfont{title}{size=\huge}
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{date}{size=\normalsize}
+% Foot and head
+\setbeamerfont{author in head/foot}{size=\small}
+\setbeamerfont{title in head/foot}{size=\footnotesize}
+\setbeamerfont{date in head/foot}{size=\small}
+\setbeamerfont{frametitle}{size=\large, series= \normalsize}
+\setbeamerfont{framesubtitle}{size=\Large, series= \bf}
+
+%
+% TITLES
+%
+\setbeamertemplate{frametitle}{%
+	\raggedleft \usebeamerfont{frametitle} \insertframetitle\\ 	
+	\vskip-6pt
+	\raggedleft \textcolor{ColorOne}{\rule{0.33\paperwidth}{0.5pt}} \\  \medskip
+	\usebeamerfont{framesubtitle} \insertframesubtitle}
+
+%
+% FOOT BAR
+%
+\makeatletter
+\defbeamertemplate*{footline}{SJ theme}
+{\leavevmode%
+\hbox{%
+\begin{beamercolorbox}[wd=\paperwidth,ht=1.4em,dp=4pt,center]{%
+title in head/foot}%
+%
+\hfill
+\usebeamerfont{author in head/foot}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+%
+\hfill
+$\bullet$
+\hfill
+%
+{\bfseries \usebeamerfont{title in head/foot} \insertshorttitle}
+%
+\hfill
+$\bullet$
+\hfill
+%
+\usebeamerfont{date in head/foot} \insertshortdate{}
+%
+\hfill
+$\bullet$
+\hfill
+%
+(\insertframenumber{}/\inserttotalframenumber)
+\hfill
+\end{beamercolorbox}}%
+\vskip0pt%
+}
+\makeatother
+
+
+%
+% BLOCKS
+%
+\setbeamertemplate{blocks}[rounded,shadow=false]
+% Basic highlight block
+\setbeamercolor{block title}{fg=black,bg= ColorThree!15}
+\setbeamerfont{block title}{size=\normalsize,series=\bf}
+\setbeamercolor{block body}{bg=ColorThree!7}
+
+%
+% NOTES
+%
+\setbeamercolor{note title}{bg=black!5!, fg=black}
+\setbeamercolor{note page}{bg=white, fg=black}
+
+%
+% BIBLIOGRAPHY SETTINGS
+%
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
+\mode<all>

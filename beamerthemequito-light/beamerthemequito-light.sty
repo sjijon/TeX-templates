@@ -1,0 +1,38 @@
+%beamerthemetexsx.sty
+\mode<presentation>
+
+%
+% USE THEME FILES
+%
+\useinnertheme{quito-light}
+\useoutertheme{quito-light}
+\usecolortheme{quito-light}
+
+%
+% REQUIRED PACKAGES
+%
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+
+%
+% COLORS
+%
+% Custom color definitions
+\definecolor{MyBlue}{RGB}{0,97,165}
+\definecolor{MyGray}{RGB}{120,120,120}
+\definecolor{MyGreen}{rgb}{0.33, 0.5, 0.18}
+\definecolor{MyRed}{RGB}{200,0,0}
+% This is a four-color theme
+\definecolor{ColorOne}{named}{MyBlue} 		% Titles, highligths, 
+\definecolor{ColorTwo}{named}{MyRed} 		% Alerts
+\definecolor{ColorThree}{named}{MyGray} 	% Equations, definitions, higlights
+\definecolor{ColorFour}{named}{MyGreen}	% Bibliography
+
+%
+% OTHER
+%
+\setbeamertemplate{navigation symbols}{}
+\setbeamercovered{transparent}
+\addtobeamertemplate{headline}{}{\vskip 6pt}
+
+\mode<all>

@@ -1,0 +1,42 @@
+\mode<presentation>
+\setbeamertemplate{background}{
+\begin{tikzpicture}
+\fill[left color=ColorOne!5, right color = ColorOne] (0,0) rectangle(\the\paperwidth,2em);
+%\fill[color=ColorOne] (0,0.75) rectangle (\the\paperwidth, 8);
+\ifnum\thepage>1\relax%
+\fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+\fi
+\end{tikzpicture}
+}
+
+
+%
+% TITLE PAGE
+%
+\defbeamertemplate*{title page}{quito-light}[1][]
+{ 
+\vfill
+\begin{beamercolorbox}[wd=\paperwidth,sep=8pt,#1]{title page header}
+\centering
+\usebeamerfont{title}\inserttitle\par%
+\end{beamercolorbox}%
+\vfill%
+\begin{beamercolorbox}[wd=\paperwidth,#1]{author}
+\centering
+\usebeamerfont{author}\insertauthor%
+\end{beamercolorbox}
+\vfill%
+\begin{beamercolorbox}[wd=\paperwidth,#1]{institute}
+\centering
+\usebeamerfont{date}\insertinstitute%
+\end{beamercolorbox}
+\vfill%
+\begin{beamercolorbox}[wd=\paperwidth,#1]{date}
+\centering
+\usebeamerfont{date}\insertdate%
+\end{beamercolorbox}
+\vfill
+}
+
+\mode
+<all>

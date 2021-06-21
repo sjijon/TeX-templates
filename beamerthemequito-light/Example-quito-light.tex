@@ -1,0 +1,60 @@
+\documentclass[serif,10pt, aspectratio=169]{beamer}
+\title[Short title]{This is a nice title}
+\date[02.02.2020]{February 2, 2020}
+\author[A. Name]{Your Name}
+\institute{A Great Lab}
+
+\usepackage{pgfpages}
+
+\setbeameroption{hide notes}
+%\setbeameroption{show notes on second screen=right}
+
+\usetheme{quito-light}
+
+\begin{document}
+%_____________________________________________________
+% Title page
+\frame[plain]{
+\titlepage
+}
+%_____________________________________________________
+% ToC
+\frame{{Table of contents}
+\tableofcontents
+}
+%_____________________________________________________
+% 
+\section{Section 1}
+\subsection{Subsection 1.1}
+\frame{{Section title} 
+{This is the frame title} 
+
+\begin{theorem}
+Let $A$ and $\beta$ be two premises. Then, $C$ is a conclusion.
+\end{theorem} 
+}
+%_____________________________________________________
+%
+\section{Section 2}
+\subsection{Subsection 2.1}
+\frame{{Section title} 
+{This is the frame title} 
+
+\begin{itemize} 
+\item<1-> This is the first item of a list
+\item<2-> Then, there's a second
+\item<3-|alert@3> And a third!
+\end{itemize}
+}
+%_____________________________________________________
+% 	References
+\frame[allowframebreaks,noframenumbering]{{References}
+
+\nocite{*}
+\bibliographystyle{abbrvnat}
+\bibliography{Biblio}
+}
+%_____________________________________________________
+
+
+\end{document}
