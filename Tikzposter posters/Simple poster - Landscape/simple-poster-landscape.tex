@@ -1,0 +1,251 @@
+\documentclass[a0paper,landscape,margin=0pt, colspace=24pt,subcolspace=0pt,blockverticalspace=36pt,innermargin=50pt]{tikzposter}
+
+\usepackage[latin9]{inputenc}
+\usepackage[square,numbers]{natbib} 	% Bibliography manager
+\usepackage{amsmath,amssymb}
+\usepackage{lipsum}  				% Random Text
+\usepackage{multicol}
+
+%..............................................................................................................................................................................................
+% Display
+\tikzposterlatexaffectionproofoff 			
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning}  %Tikz Libraries
+
+% Fonts
+\usepackage{helvet}					% Sans-Serif
+\renewcommand{\familydefault}{\sfdefault}	%
+
+% Colors
+	\definecolor{MyOrange}{rgb}{0.8, 0.33, 0}
+	\definecolor{MyBrown}{rgb}{0.28, 0.20, 0.20}
+	\definecolor{MyGreen}{rgb}{0.33, 0.42, 0.18}
+
+% Theme
+\usetheme{Default}
+\definecolorstyle{MyStyle2016}{
+	\definecolor{ColorOne}{named}{MyGreen} 
+	\definecolor{ColorTwo}{named}{MyOrange}
+	\definecolor{ColorThree}{named}{MyBrown}
+}{
+    % Title Colors
+    \colorlet{titlebgcolor}{ColorOne}
+    \colorlet{titlefgcolor}{white}
+    % Background Colors
+    \colorlet{backgroundcolor}{ColorOne!15}
+    \colorlet{framecolor}{ColorOne}
+    % Block Colors
+    \colorlet{blocktitlebgcolor}{white}
+    \colorlet{blocktitlefgcolor}{ColorTwo}
+    \colorlet{blockbodybgcolor}{white}
+    \colorlet{blockbodyfgcolor}{black}
+    % Innerblock Colors
+    \colorlet{innerblocktitlebgcolor}{ColorOne!15}
+    \colorlet{innerblocktitlefgcolor}{black}
+    \colorlet{innerblockbodybgcolor}{ColorOne!15}
+    \colorlet{innerblockbodyfgcolor}{black}
+    % Note colors
+    \colorlet{notebgcolor}{ColorTwo!20}
+    \colorlet{notefgcolor}{ColorTwo}
+    \colorlet{notefrcolor}{ColorTwo}
+ }
+
+% Color style
+\usecolorstyle[colorPalette=sampleColorPalette]{MyStyle2016}
+%..............................................................................................................................................................................................
+\title{The Best Title Ever}
+
+\author{First Author\textsuperscript{1}, \underline{Presenting Author}\textsuperscript{1,2}, Second Author\textsuperscript{2}}
+
+\institute{	\textsuperscript{1}Your primary affiliation, City, Country.\\
+		\textsuperscript{2}Another affiliation, City, Country.}
+
+%..............................................................................................................................................................................................
+\begin{document}
+%
+%
+%	HEAD
+%
+%....................................................................................
+%
+%	Title
+%
+\maketitle[width=0.96\linewidth,titletoblockverticalspace=36pt,linewidth=0,roundedcorners=10]
+%..............................................................................................................................................................................................
+%
+%	LEFT COLUMN
+%
+\begin{columns}
+\column{0.25}
+%....................................................................................
+%
+%	Block
+%
+\block[titleleft,roundedcorners=16]{Introduction}{
+	\raggedright
+	\lipsum[4]
+}
+%....................................................................................
+%
+%	Block
+%
+\block[titleleft,roundedcorners=16]{Methods}{
+	\lipsum[2]
+	
+	\tikzstyle{arrow} =  	      [->,outer sep=14pt, draw=ColorOne, text = ColorOne]
+	\tikzstyle{enterexit} =      [rectangle, text width=1.5cm, text = ColorOne, draw=none]
+	\tikzstyle{susceptible} =  [rectangle, text width=3cm, text = ColorThree!0, fill=ColorOne!95]
+	\tikzstyle{infectious} =     [rectangle, text width=3cm, text = ColorTwo, fill=ColorTwo!25]
+	\tikzstyle{recovered} =    [rectangle, text width=3cm, text = ColorThree!0, fill=ColorThree]
+
+	\begin{center}
+	\begin{tikzpicture}[node distance=6cm,text centered,minimum height=3cm, outer sep=4pt,inner sep=0pt,line width=6pt]
+		\node (S) [susceptible] {\Large \textbf{S}};
+		\node (I)  [right of=S,infectious] 	{\Large \textbf{I}};
+		\node (R) [right of=I,recovered] 	{\Large \textbf{R}};
+		
+		\node (enterS) [above of=S,yshift=-1cm,enterexit] 	{ };
+		\node (exitR) [below of=R,yshift=1cm,enterexit] 	{ };
+		
+		\draw [arrow] (enterS)  -- node[anchor=east] {$\pi$}  (S);
+		
+		\draw [arrow] (S)  -- 	node[anchor=south] {$\alpha$}  (I);
+		\draw [arrow] (I)  --  node[anchor=south] {$\beta$}  (R);
+		
+		\draw[arrow] (R) -- node[anchor=east] { $\mu$} (exitR);				
+	 \end{tikzpicture}
+	 \end{center}
+	 
+ 	That was a flowchart, and this is the corresponding ODE system:
+	 
+	 \innerblock[bodywidth=0.6\linewidth]{}{	
+	\[
+	\left\{
+	\begin{aligned}
+	    \dot{S} & =  \pi - \alpha S,\\ 
+	    \dot{I}  & =   \alpha S - \beta I,\\
+	    \dot{R} & = \beta I - \mu R. \\
+	\end{aligned}
+	\right.
+	\]
+	 }
+}
+%..............................................................................................................................................................................................
+%
+%	CENTER COLUMN
+%
+\column{0.5}
+%....................................................................................
+%
+% 	Block
+%
+\block[titleleft,roundedcorners=16]{Results}{
+	\raggedright
+	This graphic was generated with Tikz:
+	
+	\begin{center}
+	\begin{tikzpicture}[xscale=1.5,yscale=4,line width=4pt,text=ColorTwo]
+		\draw [very thin, gray,step=0.5] (-pi,-1) grid (pi,1);
+		\draw [color=ColorThree,domain=-pi:pi] plot (\x,{sin(\x r)});
+		\draw (pi,0) node[right]{$\sin(x)$} ;
+	\end{tikzpicture}
+	 \end{center}
+
+	\raggedright
+	\lipsum[85]
+	
+	\begin{center}
+	\begin{tabular}{l|c|c|r|}
+		\textbf{Name} & \textbf{Age} & \textbf{Height [cm]} & \textbf{Color}\\
+		\hline
+		María & 25 & 152 & white\\
+		Carlos & 12 & 142 & green\\
+		Francisco & 18 & 172 & blue\\
+		Mario & 21 & 165 & red
+	\end{tabular}
+	\end{center}
+	
+	\vspace{3cm}
+	
+	\begin{minipage}{0.25\textwidth}
+	\lipsum[85]
+	\lipsum[5]
+	
+	\end{minipage}
+	\begin{minipage}{0.2\textwidth}
+	\centering
+	\includegraphics[width=15cm]{Figures/Image1}
+	\end{minipage}
+
+ }
+%..............................................................................................................................................................................................
+%
+% 	RIGHT COLUMN
+%
+\column{0.25}
+%%....................................................................................
+%
+%	Block
+%
+\block[titleleft,roundedcorners=16]{Another block}{
+	\raggedright
+	
+	\lipsum[5]
+	
+	\begin{itemize}
+	\item First item
+	\item Second item
+	\item Last item
+	\end{itemize}
+
+	}
+%....................................................................................
+%
+%	Block
+%
+\block[titleleft,roundedcorners=16]{Conclusions}{
+	\raggedright
+	\lipsum[11-12]
+ }
+\end{columns} 
+%..............................................................................................................................................................................................
+%
+%	FOOT
+%
+%....................................................................................
+%
+%	References
+%
+\begin{columns}
+\column{0.65}
+\block[titleleft,roundedcorners=16]{}{
+\small
+\begin{multicols}{4}
+\nocite{*}
+\bibliographystyle{unsrtnat}
+\bibliography{BibPoster}
+\end{multicols}
+ }
+%%....................................................................................
+%%
+%%	Logos
+%%
+\column{0.35}
+\block[titleleft,roundedcorners=16]{}{
+\begin{minipage}{0.7\linewidth}
+\centering
+	\includegraphics[width=4cm]{Figures/Logo_GitHub}
+	\includegraphics[width=4cm]{Figures/Logo_GitHub}
+	\includegraphics[width=4cm]{Figures/Logo_GitHub}
+\end{minipage}
+}
+\end{columns}
+%....................................................................................
+%
+%	My info
+%
+\note[width=14cm,targetoffsetx=3cm,targetoffsety=3cm,rotate=15]{
+	\textbf{Contact information:}\\
+	Name Family Name\\
+	your.email@web.site
+}
+\end{document}
