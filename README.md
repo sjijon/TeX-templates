@@ -14,6 +14,6 @@ Aspect ratio 16:9
 
 ## Poster templates (using tikzposter)
 
-### 1. Simple poster 
+### 1. Simple poster (portrait and landscape)
 
-Simple poster, portrait, size A0
+Simple poster, size A0
