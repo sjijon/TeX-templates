@@ -22,7 +22,8 @@ Simple poster, size A0
 
 Simple poster, size A0
 
-## Simple CV
+## CV
 
+#### 1. Simple CV
 A simple, assymetric, two-column CV. You can change the theme colors in theme
 setup.tex file
