@@ -1,6 +1,8 @@
 ## Ignored files
 
 
+*.zip
+
 ## System files
 *.DS_Store
 
