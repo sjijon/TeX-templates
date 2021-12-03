@@ -2,12 +2,12 @@
 Various TeX templates, including slides and posters.
 
 ## Beamer presentations
-#### 1. Quito light 
+#### 1. Quito light
 
 Simple light beamer template
 Aspect ratio 16:9
 
-#### 2. Quito dark 
+#### 2. Quito dark
 
 Simple dark beamer template
 Aspect ratio 16:9
@@ -21,3 +21,8 @@ Simple poster, size A0
 #### 2. Simple landscape poster template
 
 Simple poster, size A0
+
+## Simple CV
+
+A simple, assymetric, two-column CV. You can change the theme colors in theme
+setup.tex file
