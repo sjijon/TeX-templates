@@ -1,0 +1,174 @@
+%
+% Simple CV 
+% Author: Sofia JIJON
+%
+
+\documentclass[a4paper,10pt]{article}
+\usepackage[vmargin=1.5cm, hmargin=1.5cm]{geometry}
+\input{MySetup}
+%-------------------------------------------------------------------------------------------------------
+
+\begin{document}
+\thispagestyle{empty}
+
+%-------------------------------------------------------------------------------------------------------
+% Left column
+%-------------------------------------------------------------------------------------------------------
+\begin{adjustbox}{valign=t}
+\begin{minipage}{0.3\textwidth} % Adapt width to your convenience
+%----------------------------------------------------
+% Please add a photo in 1x1 format
+\begin{center}
+\begin{tikzpicture}
+	\clip (0,0) circle (2cm) node {\includegraphics[width=4cm]{Photo}};
+\end{tikzpicture}
+
+\MySkip 	% See MySetup.tex file
+
+%----------------------------------------------------
+{\LARGE \bfseries Your Name}
+
+\MySkip 	% See MySetup.tex file
+
+Born on April 7th, 1997\\
+City -- COUNTRY\\
+Currently living in Another City\\
+
+\MySkip 	% See MySetup.tex file
+
+\textcolor{ColorTwo}{\faEnvelopeO} 
+\myhref{mailto:your.email@mail.io}{your.email@mail.io} \\
+
+\textcolor{ColorTwo}{\faChain} 
+\myhref{https://your-web-page.io}{https://your-web-page.io}
+\end{center}
+
+\vfill
+
+%----------------------------------------------------
+\section*{Scientific interests}
+\raggedright
+\textcolor{ColorOne}{$\circ$} Something interesting\\
+\textcolor{ColorOne}{$\circ$} Another interesting thing\\
+\textcolor{ColorOne}{$\circ$} The most interesting thing\\
+\textcolor{ColorOne}{$\circ$} Something less interesting
+
+\vfill
+
+%----------------------------------------------------
+\section*{Education}
+	\begin{description}
+	\raggedright
+	\item [\normalfont \textcolor{ColorOne}{2021.}] \textbf{PhD in
+Social Sciences}\\
+	Another University\\
+	City -- COUNTRY
+
+	\item [\normalfont \textcolor{ColorOne}{2015.}] \textbf{Masters in
+	Physics}\\
+	University\\
+	City -- COUNTRY
+
+	\item [\normalfont \textcolor{ColorOne}{2013.}] \textbf{Bachelor in arts}\\ 
+	Arts school \\
+	City -- COUNTRY
+\end{description}
+
+\vfill
+\end{minipage}
+\end{adjustbox}
+%
+%
+%-------------------------------------------------------------------------------------------------------
+% Vertical rule
+%-------------------------------------------------------------------------------------------------------
+%
+\hfill
+\begin{adjustbox}{valign=t}
+\begin{minipage}{0.05\textwidth} % Adapt width to your convenience
+\MyVerticalRule  % See MySetup.tex file
+\end{minipage}
+\end{adjustbox}
+\hfill
+%
+%-------------------------------------------------------------------------------------------------------
+% Right column
+%-------------------------------------------------------------------------------------------------------
+\begin{adjustbox}{valign=t}
+\begin{minipage}{0.6\textwidth} % Adapt width to your convienience
+\section*{Current situation}
+\begin{description}
+\raggedright
+\item[\normalfont \textcolor{ColorOne}{Jan. 2018 -- Apr. 2021.}] \textbf{Your current job}\\ \medskip
+
+A Nice Research Lab\\
+
+Here is a short description of your current project.
+
+\end{description}
+
+%----------------------------------------------------
+\section*{Experience}
+\begin{description}
+\raggedright
+\item[\normalfont \textcolor{ColorOne}{Sep. 2017 -- Aug. 2018.}] 
+	\textbf{Your previous job}\\ \medskip
+	
+	Your previous employer\\
+	
+	Here you describe what you did before working where you are working now. 
+	
+\item[\normalfont \textcolor{ColorOne}{Sep. 2012 -- Aug. 2017.}] 
+	\textbf{Your first job}\\ \medskip
+	
+	Your employer\\
+	
+	This could be a nice short description of your first job.
+\end{description}
+
+%----------------------------------------------------
+\section*{Publications}
+\begin{description}
+	\raggedright
+	\item \underline{Name, Y.}, Second Author, N., Third Author, N. et al. \textbf{(2019)} A great title {\it Journal}. doi:~\myhref{https://doi.org/xx.yyy/zzz.12345}{xx.yyy/zzz.12345}
+
+	\item First Author, T., \underline{Name, Y.}, Third Author, N. et al. \textbf{(2015)} A long title for a great study{\it Journal}. doi:~\myhref{https://doi.org/xx.yyy/zzz.54321}{xx.yyy/zzz.54321}
+	
+\end{description}
+%----------------------------------------------------
+\section*{Oral communications}
+\begin{description}
+	\raggedright
+	\item \underline{Name, Y.}, Second Author, N., Third Author, N. et al. \textbf{(2019)} The title of a talk you did. {\it Conference}, November 16, 2006, City, Country.
+\end{description}
+%----------------------------------------------------
+\section*{Another section}
+\begin{description}
+	\raggedright
+	\item Something you want to include in your CV
+\end{description}
+
+\MySkip
+%----------------------------------------------------
+\begin{multicols}{2}
+\section*{Numerical tools}
+\begin{tabular}{ll}
+	R  			& \SkillBull{$\bullet \bullet \bullet \, \circ$}\\
+	Matlab 		& \SkillBull{$\bullet \bullet \bullet \, \circ$}\\
+	Mathematica 	& \SkillBull{$\bullet \circ \circ \, \circ$}\\
+\end{tabular}
+
+\vfill\null \columnbreak  % Break column for new section
+
+\section*{Languages}
+\begin{tabular}{ll}
+	Spanish 		& \SkillBull{$\bullet \bullet \bullet \, \circ$}\\
+	French 		& \SkillBull{$\bullet \circ \circ \, \circ$}\\
+\end{tabular}
+\end{multicols}
+%----------------------------------------------------
+\LastUpdate
+%----------------------------------------------------
+\end{minipage}
+\end{adjustbox}
+\end{document}
