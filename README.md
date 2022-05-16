@@ -27,3 +27,8 @@ Simple poster, size A0
 #### 1. Simple CV
 A simple, assymetric, two-column CV. You can change the theme colors in theme
 setup.tex file
+
+## TikZ
+
+#### 1. Timeline
+A simple, colorful timeline.
