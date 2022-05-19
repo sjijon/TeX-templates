@@ -38,7 +38,7 @@ setup.tex file
 Also available in the Overleaf gallery: <a href="https://www.overleaf.com/latex/templates/simple-cv/dwhjbyjdkcch" target="_blank"> https://www.overleaf.com/latex/templates/simple-cv/dwhjbyjdkcch</a>
 
 
-## TikZ
+## TikZ figures
 
 #### 1. Timeline
 A simple, colorful timeline.
